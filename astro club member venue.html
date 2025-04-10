@@ -1,7 +1,11 @@
+<!DOCTYPE html>
+
+
 <html>
     <head>
+        <img class="bg" src="headBg.jpeg" />
         <div class="topnav">
-            <p style="color: white;font-variant:small-caps; float: left;padding: 14px 16px">Historical museum of the universe<p>
+            <p style="color: white;font-variant:small-caps; float: left;padding: 14px 16px">Historical museum of the universe</p>
                 <a class="active" href="index.html">Main hall</a>
                 <a href="FromTheBigBangToTheBlackHoles .html">From The Big Bang To The Black Holes</a>
                 <a href="space photo gallery.html">Space Photo Gallery</a>
@@ -12,7 +16,11 @@
                 
           </div>
           <style>
+            
             .topnav {
+              position: absolute;
+              top: 8px;
+              width: 100%;
               background-color: #333;
               overflow: hidden;
             }
@@ -34,24 +42,29 @@
             }
             
            
-            .topnav a.active {
-              background-color: #04AA6D;
-              color: white;
-            }
           </style>
           
         <title>Astro Club Venue | Historical Museum of the Universe</title>
+        <h1 class="bg-text">Astro Club Venue</h1>
         <link rel="stylesheet" href="webStyling.css" />
     </head>
+
     <body>
+
+     <div id="box">
       
       <h2>
         Booking the venue Here
       </h2> 
-       <p>
+       <p style="margin-top:30px;">
         You should be a member to get a reservation..
       </p>
-      <a href="booking.html"><button type="button">Booking Now!</button></a>
+      <div style="text-align: center ; margin: 30px auto;">
+        <a href="booking.html">
+          <button type="button">Booking</button>
+        </a>
+      </div>
+      
 
       <h2>
         The events held this month:
@@ -59,10 +72,10 @@
       <table>
         <tr>
           <th>
-            <img src="event1.png.jpeg" alt="event photo" style="width: 500px; height: 400px;">
+            <img src="event1.png.jpeg" alt="event photo" style="width: 300px; height: 300px;">
           </th>
           <th>
-            <img src="event2.png.jpeg" alt="event photo" style="width: 500px; height: 400px;">
+            <img src="event2.png.jpeg" alt="event photo" style="width: 300px; height: 300px;">
           </th>
         </tr>
         <tr>
@@ -84,6 +97,9 @@
           </td>
         </tr>
       </table>
+      <div style="height: 30px;"  >
+
+      </div>
       <h2>members Contact information </h2>
        <table>
         <tr>
@@ -97,6 +113,10 @@
           <td>mo@edu.om</td>
         </tr>
        </table>
+       <div style="height: 30px;"  >
+
+       </div>
+    </div>
     </body>
     <footer>
         <p>Email: info@stars.com | phone: +968 0099 5663</p>
