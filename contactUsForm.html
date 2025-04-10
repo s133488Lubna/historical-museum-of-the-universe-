@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <header>
+       <h1>Contact Us via email</h1>
+       <link rel="stylesheet" href="webStyling.css">
+    </header>
+    <body>
+        <form action="https://httpbin.org/get" method="get">
+            Subject: <input type="text" name="subject" size="20" maxlength="10"/> <br/>
+            cc: <input type="text" name="cc" size="15" maxlength="5"/> <br/>
+            Bcc: <input type="text" name="bcc" size="10"/> <br/>
+            letter: <textarea name="body" cols="40" rows="5" 
+              maxlength="100">Enter your email</textarea>
+             <br/>
+             <input type="hidden" name="email" value="info@star.com" />
+            <br/>
+            
+            <input type="submit" value="Send us an email"/>
+            <input type="reset" value=" Clear email"/>
+            <a  href="contactUs.html"><button style="width: 100%; text-align: center;" type="button">Return Back</button> </a>
+        </form>       
+       
+    </body>
+</html>
