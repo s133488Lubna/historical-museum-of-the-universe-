@@ -95,11 +95,13 @@ head {
     padding: 20px;
     text-align: center;
   }
-header .logo{
-    max-height: 60px;
-    
+.logo{
+    position: fixed;
+    top: 10px;
+    left: 10;
+    height: 50px;
+    z-index: 9999;
 }
-
 main{
     padding: 30px;
 }
@@ -181,4 +183,4 @@ footer{
     text-align: center; 
     width: 100%;
 }
-/*navigation bar*/
+
