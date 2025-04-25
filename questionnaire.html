@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Questionnaire | Historical Museum of the Universe
+        </title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+              <a class="navbar-brand" href="#">Historical Museum</a>
+            </div>
+          </nav>
+        
+          <!-- Form Section -->
+          <div class="container my-5">
+            <div class="card shadow p-4">
+              <h2 class="mb-4">Feedback Questionnaire</h2>
+              <form id="questionnaireForm" novalidate>
+        
+                <!-- Name -->
+                <div class="mb-3">
+                  <label for="name" class="form-label">Full Name</label>
+                  <input type="text" class="form-control" id="name" placeholder="Enter your full name" required>
+                  <div class="invalid-feedback">Name must be at least 3 letters (alphabet only).</div>
+                </div>
+        
+                <!-- Email -->
+                <div class="mb-3">
+                  <label for="email" class="form-label">Email address</label>
+                  <input type="email" class="form-control" id="email" placeholder="name@example.com" required>
+                  <div class="invalid-feedback">Please enter a valid email address.</div>
+                </div>
+        
+                <!-- Age -->
+                <div class="mb-3">
+                  <label for="age" class="form-label">Age</label>
+                  <input type="number" class="form-control" id="age" placeholder="e.g. 25" required>
+                  <div class="invalid-feedback">Age must be a number between 10 and 99.</div>
+                </div>
+        
+                <!-- Gender -->
+                <div class="mb-3">
+                  <label class="form-label d-block">Gender</label>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="gender" id="male" value="Male" required>
+                    <label class="form-check-label" for="male">Male</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="gender" id="female" value="Female" required>
+                    <label class="form-check-label" for="female">Female</label>
+                  </div>
+                  <div class="invalid-feedback d-block">Please select your gender.</div>
+                </div>
+        
+                <!-- Interests -->
+                <div class="mb-3">
+                  <label class="form-label">What interested you the most?</label>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="FromTheBigBangToTheBlackHoles" id="interest1">
+                    <label class="form-check-label" for="interest1">From The Big Bang To The Black Holes</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Space photo gallery" id="interest2">
+                    <label class="form-check-label" for="interest2">Space photo gallery</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Astro Club" id="interest3">
+                    <label class="form-check-label" for="interest3">Astro Club</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Souvenir store" id="interest3">
+                    <label class="form-check-label" for="interest3">Souvenir Store</label>
+                  </div>
+                </div>
+        
+                <!-- Comments -->
+                <div class="mb-3">
+                  <label for="comments" class="form-label">Additional Comments</label>
+                  <textarea class="form-control" id="comments" rows="3" placeholder="Share your thoughts..."></textarea>
+                </div>
+        
+                <!-- Submit -->
+                <button type="submit" class="btn btn-primary">Submit Feedback</button>
+              </form>
+            </div>
+          </div>
+        
+          <script>
+            // Custom validation script with advanced patterns
+            document.getElementById('questionnaireForm').addEventListener('submit', function (e) {
+              e.preventDefault();
+        
+              let isValid = true;
+        
+              // Name validation: only letters, min length 3
+              const name = document.getElementById('name');
+              const namePattern = /^[A-Za-z ]{3,}$/;
+              if (!namePattern.test(name.value)) {
+                name.classList.add('is-invalid');
+                isValid = false;
+              } else {
+                name.classList.remove('is-invalid');
+              }
+        
+              // Email validation: Bootstrap already handles it via input type="email"
+              const email = document.getElementById('email');
+              if (!email.checkValidity()) {
+                email.classList.add('is-invalid');
+                isValid = false;
+              } else {
+                email.classList.remove('is-invalid');
+              }
+        
+              // Age validation: number between 10 and 99
+              const age = document.getElementById('age');
+              if (isNaN(age.value) || age.value < 10 || age.value > 99) {
+                age.classList.add('is-invalid');
+                isValid = false;
+              } else {
+                age.classList.remove('is-invalid');
+              }
+        
+              // Gender validation
+              const genderMale = document.getElementById('male');
+              const genderFemale = document.getElementById('female');
+              if (!genderMale.checked && !genderFemale.checked) {
+                document.querySelectorAll('input[name="gender"]').forEach(el => {
+                  el.classList.add('is-invalid');
+                });
+                isValid = false;
+              } else {
+                document.querySelectorAll('input[name="gender"]').forEach(el => {
+                  el.classList.remove('is-invalid');
+                });
+              }
+        
+              if (isValid) {
+                alert("Thank you for your feedback!");
+                this.reset();
+              }
+            });
+        </script>
+        </body>
+</html>
