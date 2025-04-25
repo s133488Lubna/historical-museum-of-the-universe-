@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html>
     <head>
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
        <img class="bg" src="headBg.jpeg" />
         <div class="topnav ">
           <p style="color: white;font-variant:small-caps; float: left;padding: 14px 16px; padding-left: 80px;">Historical museum of the universe</p>
             <a href="index.html">Main hall</a>
-            <a href="from big bang to black holes.html">From The Big Bang To The Black Holes</a>
+            <a href="FromTheBigBangToTheBlackHoles .html">From The Big Bang To The Black Holes</a>
             <a href="space photo gallery.html">Space Photo Gallery</a>
             <a href="astro club member venue.html">Astro Club Venue</a>
             <a href="store.html">Souvenir Store</a>
@@ -56,32 +58,41 @@
         <link rel="stylesheet" href="webStyling.css" />
     </head>
     <body>
-      <div class="section-container">
-        <div class="section">
+      <div class="section">
         <img src="moonLamp.jpg" alt="Moon Lamp">
-        <h3> For moon lover moon lamp</h3>
-        <p> 3.500 OMR </p>
-       </div>  
+        <h3>For moon lover moon lamp</h3>
+        <p>3.500 OMR</p>
+        <button class="btn btn-primary" onclick="goToCalculator('Moon Lamp', 1, 3.5)">Buy Now</button>
+      </div>
+
        <div class="section">
         <img src="solarlight.jpg" alt="Elegant Solar System bedside light">
-        <h3>
-          Elegant Solar System bedside light
-        </h3>
-        <p>
-          5.000 OMR
-        </p>
+        <h3> Elegant Solar System bedside light</h3>
+        <p>5.000 OMR </p>
+        <button class="btn btn-primary" onclick="goToCalculator('Elegant Solar System bedside light', 1, 5.0)">Buy Now</button>
        </div>
+
        <div class="section">
         <img src="solar3d.jpg" alt="3D Solar System Model">
-        <h3>
-          3D Solar System Model
-        </h3>
-        <p>
-          7.000 OMR
-        </p>
+        <h3>3D Solar System Model </h3>
+        <p>7.000 OMR </p>
+        <button class="btn btn-primary" onclick="goToCalculator('3D Solar System Model', 1, 7.0)">Buy Now</button>
        </div>
       </div>
+
+      <script>
+        function goToCalculator(name, count, price) {
+    const billData = {
+      itemName: name,
+      itemCount: count,
+      itemPrice: price
+    };
+    localStorage.setItem('billInfo', JSON.stringify(billData));
+    window.location.href = 'calculate.html';
+  }
+      </script>
     </body>
+    
     <footer >
         <p>Email: info@stars.com | phone: +968 0099 5663</p>
         
