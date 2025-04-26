@@ -1,100 +1,90 @@
+
 <!DOCTYPE html>
-<html>
-    <head>
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<html lang="en">
+<head>
+  <title>Souvenir Store | Historical Museum</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-       <img class="bg" src="headBg.jpeg" />
-        <div class="topnav ">
-          <p style="color: white;font-variant:small-caps; float: left;padding: 14px 16px; padding-left: 80px;">Historical museum of the universe</p>
-            <a href="index.html">Main hall</a>
-            <a href="FromTheBigBangToTheBlackHoles .html">From The Big Bang To The Black Holes</a>
-            <a href="space photo gallery.html">Space Photo Gallery</a>
-            <a href="astro club member venue.html">Astro Club Venue</a>
-            <a href="store.html">Souvenir Store</a>
-            <a href="contactUs.html">Contact us</a>
-            <a href="aboutUs.html">About us</a>
-            
-        </div>
-
-          <style>
-            .topnav {
-              position: absolute;
-              top: 8px;
-              height: 65px;
-              width: 100%;
-              background-color: #333;
-              overflow: hidden;
-            }
-            
-            /* Style the links inside the navigation bar */
-            .topnav a {
-              float: left;
-              color: #f2f2f2;
-              text-align: center;
-              padding: 14px 14px;
-              text-decoration: none;
-              font-size: 17px;
-            }
-            
-            
-            .topnav a:hover {
-              background-color: #ddd;
-              color: black;
-            }
-            
-              </style>
-        
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand d-flex align-items-center" href="#">
+        <img src="museumLogo.png" alt="Logo" width="40" height="40" class="me-2">
+        Historical Museum
+      </a>
       
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" href="index.html">Main hall</a></li>
+          <li class="nav-item"><a class="nav-link" href="FromTheBigBangToTheBlackHoles.html">Big Bang</a></li>
+          <li class="nav-item"><a class="nav-link" href="spacephotogallery.html">Gallery</a></li>
+          <li class="nav-item"><a class="nav-link" href="astro club member venue.html">Astro Club</a></li>
+          <li class="nav-item"><a class="nav-link" href="store.html">Store</a></li>
+          <li class="nav-item"><a class="nav-link" href="funpage.html">Contact</a></li>
+          <li class="nav-item"><a class="nav-link" href="questionnaire.html">Contact</a></li>
+          <li class="nav-item"><a class="nav-link" href="contactUs.html">Contact</a></li>
+          <li class="nav-item"><a class="nav-link active" href="aboutUs.html">About</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
   
-            
-          
-           <img src="museumLogo.png" alt="Museum logo" class="logo"/>
-          
-            
-      
-        
-        <title>Souvenir Store | Historical Museum of the Universe</title>
-        <h1 class="bg-text">Souvenir Store</h1>
-        <link rel="stylesheet" href="webStyling.css" />
-    </head>
-    <body>
-      <div class="section">
-        <img src="moonLamp.jpg" alt="Moon Lamp">
-        <h3>For moon lover moon lamp</h3>
-        <p>3.500 OMR</p>
+  <!--toptitle-->
+  
+  <div class="position-relative text-white text-center" style="height: 60vh;">
+    <img src="headBg.jpeg" class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover" alt="Background" >
+    <div class="position-absolute top-50 start-50 translate-middle z-1">
+      <h1 class="display-4 fw-bold">Souvenir Store</h1>
+    </div>
+  </div>
+
+</head>
+<body>
+  
+  <!-- Store Section -->
+  <div class="container my-5">
+    <h1 class="text-center mb-4">Souvenir Store</h1>
+    <div class="row g-4">
+      <div class="col-md-4 text-center">
+        <img src="moonLamp.jpg" alt="Moon Lamp" class="img-fluid rounded mb-2">
+        <h5>Moon Lover Lamp</h5>
+        <p class="text-muted">3.500 OMR</p>
         <button class="btn btn-primary" onclick="goToCalculator('Moon Lamp', 1, 3.5)">Buy Now</button>
       </div>
-
-       <div class="section">
-        <img src="solarlight.jpg" alt="Elegant Solar System bedside light">
-        <h3> Elegant Solar System bedside light</h3>
-        <p>5.000 OMR </p>
+      <div class="col-md-4 text-center">
+        <img src="solarlight.jpg" alt="Solar System Light" class="img-fluid rounded mb-2">
+        <h5>Solar System Bedside Light</h5>
+        <p class="text-muted">5.000 OMR</p>
         <button class="btn btn-primary" onclick="goToCalculator('Elegant Solar System bedside light', 1, 5.0)">Buy Now</button>
-       </div>
-
-       <div class="section">
-        <img src="solar3d.jpg" alt="3D Solar System Model">
-        <h3>3D Solar System Model </h3>
-        <p>7.000 OMR </p>
-        <button class="btn btn-primary" onclick="goToCalculator('3D Solar System Model', 1, 7.0)">Buy Now</button>
-       </div>
       </div>
+      <div class="col-md-4 text-center">
+        <img src="solar3d.jpg" alt="3D Solar Model" class="img-fluid rounded mb-2">
+        <h5>3D Solar System Model</h5>
+        <p class="text-muted">7.000 OMR</p>
+        <button class="btn btn-primary" onclick="goToCalculator('3D Solar System Model', 1, 7.0)">Buy Now</button>
+      </div>
+    </div>
+  </div>
+  <script>
+    function goToCalculator(name, count, price) {
+const billData = {
+  itemName: name,
+  itemCount: count,
+  itemPrice: price
+};
+localStorage.setItem('billInfo', JSON.stringify(billData));
+window.location.href = 'calculate.html';
+}
+  </script>
 
-      <script>
-        function goToCalculator(name, count, price) {
-    const billData = {
-      itemName: name,
-      itemCount: count,
-      itemPrice: price
-    };
-    localStorage.setItem('billInfo', JSON.stringify(billData));
-    window.location.href = 'calculate.html';
-  }
-      </script>
-    </body>
-    
-    <footer >
-        <p>Email: info@stars.com | phone: +968 0099 5663</p>
-        
-    </footer>
+ 
+  
+</body>
+ <!-- Footer -->
+ <footer class="bg-dark text-white text-center py-3">
+  Email: info@stars.com | Phone: +968 0099 5663
+</footer>
+
+
 </html>
