@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,8 +20,8 @@
           <li class="nav-item"><a class="nav-link" href="spacephotogallery.html">Gallery</a></li>
           <li class="nav-item"><a class="nav-link" href="astro club member venue.html">Astro Club</a></li>
           <li class="nav-item"><a class="nav-link" href="store.html">Store</a></li>
-          <li class="nav-item"><a class="nav-link" href="funpage.html">Contact</a></li>
-          <li class="nav-item"><a class="nav-link" href="questionnaire.html">Contact</a></li>
+          <li class="nav-item"><a class="nav-link" href="funpage.html">Magic planet</a></li>
+          <li class="nav-item"><a class="nav-link" href="questionnaire.html">Help us</a></li>
           <li class="nav-item"><a class="nav-link" href="contactUs.html">Contact</a></li>
           <li class="nav-item"><a class="nav-link active" href="aboutUs.html">About</a></li>
         </ul>
@@ -50,32 +49,48 @@
         <img src="moonLamp.jpg" alt="Moon Lamp" class="img-fluid rounded mb-2">
         <h5>Moon Lover Lamp</h5>
         <p class="text-muted">3.500 OMR</p>
-        <button class="btn btn-primary" onclick="goToCalculator('Moon Lamp', 1, 3.5)">Buy Now</button>
+        <button class="btn btn-primary" onclick="addToCart('Moon Lamp', 3.5)">Add</button>
       </div>
       <div class="col-md-4 text-center">
         <img src="solarlight.jpg" alt="Solar System Light" class="img-fluid rounded mb-2">
         <h5>Solar System Bedside Light</h5>
         <p class="text-muted">5.000 OMR</p>
-        <button class="btn btn-primary" onclick="goToCalculator('Elegant Solar System bedside light', 1, 5.0)">Buy Now</button>
+        <button class="btn btn-primary" onclick="addToCart('Elegant Solar System bedside light',5.0)">Add</button>
       </div>
       <div class="col-md-4 text-center">
         <img src="solar3d.jpg" alt="3D Solar Model" class="img-fluid rounded mb-2">
         <h5>3D Solar System Model</h5>
         <p class="text-muted">7.000 OMR</p>
-        <button class="btn btn-primary" onclick="goToCalculator('3D Solar System Model', 1, 7.0)">Buy Now</button>
+        <button class="btn btn-primary" onclick="addToCart('3D Solar System Model', 7.0)">Add</button>
       </div>
+      <div class="mb-3">
+        <label for="age" class="form-label">Enter your age:</label>
+        <input type="number" id="age" class="form-control" placeholder="Enter your age">
+      </div>
+  
+      <button class="btn btn-primary mt-4" onclick="goToCheckout()">Pay Now</button>
+
     </div>
   </div>
   <script>
-    function goToCalculator(name, count, price) {
-const billData = {
-  itemName: name,
-  itemCount: count,
-  itemPrice: price
-};
-localStorage.setItem('billInfo', JSON.stringify(billData));
-window.location.href = 'calculate.html';
-}
+    let cart = [];
+
+    function addToCart(itemName, itemPrice){
+      cart.push({name: itemName, price: itemPrice});
+      alert('${itemName} add to cart!');
+    }
+    function goToCheckout(){
+      const age = parseInt(document.getElementById('age').value);
+      if (age <= 0){
+        alert("Please enter a valid age!");
+        return;
+      }
+      
+      localStorage.setItem('cart', JSON.stringify(cart));
+      localStorage.setItem('age', age);
+      window.location.href = 'calculate.html';   
+     }
+
   </script>
 
  
