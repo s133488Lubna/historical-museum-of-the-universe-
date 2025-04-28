@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -80,6 +81,20 @@
     </div>
     <div id="searchResult" class="alert alert-info d-none"></div>
 
+    <h2 class="mb-3">Filter by Gender</h2>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="genderFilter" id="filterAll" value="all" checked onchange="filterMembers()">
+      <label class="form-check-label" for="filterAll">All</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="genderFilter" id="filterMale" value="male" onchange="filterMembers()">
+      <label class="form-check-label" for="filterMale">Male</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="genderFilter" id="filterFemale" value="female" onchange="filterMembers()">
+      <label class="form-check-label" for="filterFemale">Female</label>
+    </div>
+
     <h2 class="mb-3">Members' Contact Information</h2>
     <div class="table-responsive">
       <table id="membersTable" class="table table-bordered">
@@ -111,6 +126,17 @@
         <label for="password" class="form-label">Password</label>
         <input type="password" class="form-control" id="password" required>
       </div>
+      <div class="col-md-3">
+        <label class="form-label">Gender</label>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="gender" id="male" value="male" required>
+          <label class="form-check-label" for="male">Male</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="gender" id="female" value="female" required>
+          <label class="form-check-label" for="female">Female</label>
+        </div>
+      </div>
       <div class="col-12">
         <button type="submit" class="btn btn-primary">Add Member</button>
       </div>
@@ -121,14 +147,21 @@
   </div>
 
   <script>
- function Member(name, description, email, password) {
-      this.name = name;
-      this.description = description;
-      this.email = email;
-      this.password = password;
-    }
+ function Member(name, description, email, password, gender) {
+  this.name = name;
+  this.description = description;
+  this.email = email;
+  this.password = password;
+  this.gender = gender; 
+}
 
-    const members = [];
+    // Test array with some members
+const members = [
+  new Member("Ahmed Ali", "Astronomy Enthusiast", "ahmed@example.com", "1234", "male"),
+  new Member("Sara Salim", "Astrophysicist", "sara@example.com", "5678", "female"),
+  new Member("Said Khaild", "Meteor Hunter", "said@example.com", "abcd", "male"),
+  new Member("Nada Ahmed", "Planetarium Guide", "nada@example.com", "efgh", "female"),
+];
 
     
     function searchMember() {
@@ -145,26 +178,35 @@
     }
 
     function displayMembers() {
-      const table = document.getElementById("membersTable").querySelector("tbody");
-      table.innerHTML = "";
-      members.forEach(member => {
-        const row = `<tr><td>${member.name}</td><td>${member.description}</td><td>${member.email}</td></tr>`;
-        table.innerHTML += row;
-      });
+  const filter = document.querySelector('input[name="genderFilter"]:checked').value;
+  const table = document.getElementById("membersTable").querySelector("tbody");
+  table.innerHTML = "";
+  members.forEach(member => {
+    if (filter === "all" || member.gender === filter) {
+      const row = `<tr><td>${member.name}</td><td>${member.description}<br><small>${member.gender}</small></td><td>${member.email}</td></tr>`;
+      table.innerHTML += row;
     }
+  });
+  }
 
     document.getElementById("memberForm").addEventListener("submit", function(e) {
-      e.preventDefault();
-      const name = document.getElementById("name").value;
-      const description = document.getElementById("description").value;
-      const email = document.getElementById("email").value;
-      const password = document.getElementById("password").value;
-      members.push(new Member(name, description, email, password));
-      displayMembers();
-      this.reset();
-    });
+  e.preventDefault();
+  const name = document.getElementById("name").value;
+  const description = document.getElementById("description").value;
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+  const gender = document.querySelector('input[name="gender"]:checked').value;
+
+  members.push(new Member(name, description, email, password, gender));
+  displayMembers();
+  this.reset();
+  });
 
     window.onload  = displayMembers;
+
+    function filterMembers() {
+      displayMembers();
+    }
   </script>
 
   
