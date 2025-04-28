@@ -22,13 +22,14 @@
           <li class="nav-item"><a class="nav-link" href="spacephotogallery.html">Gallery</a></li>
           <li class="nav-item"><a class="nav-link" href="astro club member venue.html">Astro Club</a></li>
           <li class="nav-item"><a class="nav-link" href="store.html">Store</a></li>
-          <li class="nav-item"><a class="nav-link" href="funpage.html">Contact</a></li>
-          <li class="nav-item"><a class="nav-link" href="questionnaire.html">Contact</a></li>
+          <li class="nav-item"><a class="nav-link" href="funpage.html">Magic planet</a></li>
+          <li class="nav-item"><a class="nav-link" href="questionnaire.html">Help us</a></li>
           <li class="nav-item"><a class="nav-link" href="contactUs.html">Contact</a></li>
           <li class="nav-item"><a class="nav-link active" href="aboutUs.html">About</a></li>
         </ul>
       </div>
     </div>
+  
   </nav>
   
   <!--toptitle-->
@@ -64,8 +65,9 @@
          <!-- Drop zone where user will place the planets -->
          <div id="dropzone" class="border border-dark rounded p-4 bg-white min-vh-25"></div>
 
-        <!-- Button to check result -->
+        <!-- Button to check result and button to reset-->
         <button class="btn btn-primary mt-4" onclick="checkOrder()">Check Order</button>
+        <button class="btn btn-primary mt-4" onclick="resetGame()">Reset</button>
 
          <!-- Feedback area -->
          <div id="result" class="mt-3 fw-bold"></div>
@@ -74,9 +76,12 @@
             // Planets order from the sun
             const correctOrder = ["Mercury","Venus","Earth","Mars","Jupiter","Saturn","Uranus","Neptune"];
 
-            // Get drappable elements and dropzone
+            // Get elements
             const planets = document.querySelectorAll(".planet");
             const dropzone = document.getElementById("dropzone");
+
+            const originalContainer = document.getElementById("Planet-container");
+            const resultDiv = document.getElementById("result");
 
             //Loop through each planet and add drag event handlers
             planets.forEach(planet => {
@@ -116,6 +121,17 @@
                 ? "<span class='text-success'>Excellent! You got them all in the right order! </span>"
                 : "<span class='text-danger'>Wrong order. Try again! </span>";
             }
+
+             // Reset Game function
+        function resetGame() {
+            // Move all planets back to original container
+            const allPlanets = document.querySelectorAll(".planet");
+            allPlanets.forEach(planet => {
+                originalContainer.appendChild(planet);
+            });
+            // Clear result message
+            resultDiv.innerHTML = "";
+          }
           </script>
     </body>
 </html>
