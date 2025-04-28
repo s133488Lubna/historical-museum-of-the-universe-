@@ -22,8 +22,8 @@
           <li class="nav-item"><a class="nav-link" href="spacephotogallery.html">Gallery</a></li>
           <li class="nav-item"><a class="nav-link" href="astro club member venue.html">Astro Club</a></li>
           <li class="nav-item"><a class="nav-link" href="store.html">Store</a></li>
-          <li class="nav-item"><a class="nav-link" href="funpage.html">Contact</a></li>
-          <li class="nav-item"><a class="nav-link" href="questionnaire.html">Contact</a></li>
+          <li class="nav-item"><a class="nav-link" href="funpage.html">Magic planet</a></li>
+          <li class="nav-item"><a class="nav-link" href="questionnaire.html">Help us</a></li>
           <li class="nav-item"><a class="nav-link" href="contactUs.html">Contact</a></li>
           <li class="nav-item"><a class="nav-link active" href="aboutUs.html">About</a></li>
         </ul>
@@ -46,40 +46,42 @@
         <h1 class="text-center mb-4">Souvenir Store Bill</h1>
       
         <div class="card p-4 shadow">
-          <div id="bill-output" class="mb-3"></div>
-      
-          <div class="mb-3">
-            <label for="age" class="form-label">Enter your age:</label>
-            <input type="number" id="age" class="form-control" placeholder="e.g., 65">
-          </div>
-      
-          <button onclick="calculateTotal()" class="btn btn-success">Calculate Total</button>
-      
-          <div id="result" class="mt-4 fw-bold fs-5 text-primary"></div>
+          <div id="bill" class="mb-3"></div>
+          
           <button type="button" class="btn btn-success"><a href="store.html">back</a></button>
         </div>
       
         <script>
-             const billInfo = JSON.parse(localStorage.getItem('billInfo'));
+          window.onload= function () {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const age = parseInt(localStorage.getItem('age')) || 0;
 
-             document.getElementById('bill-output').innerHTML = `
-      <p><strong>Item:</strong> ${billInfo.itemName}</p>
-      <p><strong>Price:</strong> ${billInfo.itemPrice.toFixed(3)} OMR</p>
-      <p><strong>Quantity:</strong> ${billInfo.itemCount}</p>  `;
+            let total = 0;
+            let bill = "<h2>Bill Details</h2><ul>";
 
-      function calculateTotal() {
-      const age = parseInt(document.getElementById('age').value);
-      let total = billInfo.itemCount * billInfo.itemPrice;
+            cart.forEach(item => {
+              bill += `<li> ${item.name} -  ${item.price} OMR</li>`;
+              total += item.price;
+            });
 
-      if (age >= 60) {
-        total *= 0.9;
-        document.getElementById('result').innerHTML =
-          `You got a 10% senior discount! Total: <strong>${total.toFixed(3)} OMR</strong>`;
-      } else {
-        document.getElementById('result').innerHTML =
-          `Total: <strong>${total.toFixed(3)} OMR</strong>`;
-      }
-    }
+            bill += "</ul>";
+
+            if (age >= 60){
+              const discount = total * 0.2;
+              const discountTotal = total - discount;
+              bill += `<p>Age: ${age} (Eligible for 20% senior discount)</p>`;
+              bill += `<p><strong>Discount: -${discount.toFixed(2)} OMR</strong></p>`;
+              bill += `<h3>Total After Discount: ${discountTotal.toFixed(2)} OMR</h3>`;
+            } else {
+              bill += `<p>Age: ${age}</p>`;
+              bill += `<h3>Total: ${total.toFixed(2)} OMR</h3>`;
+            }
+            
+            document.getElementById("bill").innerHTML = bill;
+          };
+                      
+          
+          
   </script>
     </body>
 </html>
