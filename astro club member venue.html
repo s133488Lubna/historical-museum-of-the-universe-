@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -113,19 +112,23 @@
       <div class="col-md-3">
         <label for="name" class="form-label">Name</label>
         <input type="text" class="form-control" id="name" required>
+        <div class="invalid-feedback">Name is required.</div>
       </div>
       <div class="col-md-3">
         <label for="description" class="form-label">Description</label>
         <input type="text" class="form-control" id="description" required>
+        <div class="invalid-feedback">Description is required.</div>
       </div>
       <div class="col-md-3">
         <label for="email" class="form-label">Email</label>
         <input type="email" class="form-control" id="email" required>
+        <div class="invalid-feedback">Email is required.</div>
       </div>
       <div class="col-md-3">
         <label for="password" class="form-label">Password</label>
         <input type="password" class="form-control" id="password" required>
-      </div>
+        <div class="invalid-feedback">Password is required.</div>
+      </div>     
       <div class="col-md-3">
         <label class="form-label">Gender</label>
         <div class="form-check">
@@ -136,6 +139,7 @@
           <input class="form-check-input" type="radio" name="gender" id="female" value="female" required>
           <label class="form-check-label" for="female">Female</label>
         </div>
+        <div class="invalid-feedback">Gender is required.</div>
       </div>
       <div class="col-12">
         <button type="submit" class="btn btn-primary">Add Member</button>
@@ -147,23 +151,41 @@
   </div>
 
   <script>
- function Member(name, description, email, password, gender) {
-  this.name = name;
-  this.description = description;
-  this.email = email;
-  this.password = password;
-  this.gender = gender; 
-}
-
-    // Test array with some members
-const members = [
-  new Member("Ahmed Ali", "Astronomy Enthusiast", "ahmed@example.com", "1234", "male"),
-  new Member("Sara Salim", "Astrophysicist", "sara@example.com", "5678", "female"),
-  new Member("Said Khaild", "Meteor Hunter", "said@example.com", "abcd", "male"),
-  new Member("Nada Ahmed", "Planetarium Guide", "nada@example.com", "efgh", "female"),
-];
-
-    
+    // Member constructor (no phone)
+    function Member(name, description, email, password, gender) {
+      this.name = name;
+      this.description = description;
+      this.email = email;
+      this.password = password;
+      this.gender = gender;
+    }
+  
+    // Initial dummy members
+    const members = [
+      new Member("Ahmed Ali", "Astronomy Enthusiast", "ahmed@example.com", "1234", "male"),
+      new Member("Sara Salim", "Astrophysicist", "sara@example.com", "5678", "female"),
+      new Member("Said Khalid", "Meteor Hunter", "said@example.com", "abcd", "male"),
+      new Member("Nada Ahmed", "Planetarium Guide", "nada@example.com", "efgh", "female"),
+    ];
+  
+    // Display members with gender filter
+    function displayMembers() {
+      const filter = document.querySelector('input[name="genderFilter"]:checked').value;
+      const table = document.getElementById("membersTable").querySelector("tbody");
+      table.innerHTML = "";
+      members.forEach(member => {
+        if (filter === "all" || member.gender === filter) {
+          const row = `<tr>
+            <td>${member.name}</td>
+            <td>${member.description}<br><small>${member.gender}</small></td>
+            <td>${member.email}</td>
+          </tr>`;
+          table.innerHTML += row;
+        }
+      });
+    }
+  
+    // Search by name or email
     function searchMember() {
       const query = document.getElementById("searchInput").value.toLowerCase();
       const result = members.find(m => m.name.toLowerCase().includes(query) || m.email.toLowerCase().includes(query));
@@ -176,38 +198,47 @@ const members = [
         display.textContent = "No matching member found.";
       }
     }
-
-    function displayMembers() {
-  const filter = document.querySelector('input[name="genderFilter"]:checked').value;
-  const table = document.getElementById("membersTable").querySelector("tbody");
-  table.innerHTML = "";
-  members.forEach(member => {
-    if (filter === "all" || member.gender === filter) {
-      const row = `<tr><td>${member.name}</td><td>${member.description}<br><small>${member.gender}</small></td><td>${member.email}</td></tr>`;
-      table.innerHTML += row;
-    }
-  });
-  }
-
-    document.getElementById("memberForm").addEventListener("submit", function(e) {
-  e.preventDefault();
-  const name = document.getElementById("name").value;
-  const description = document.getElementById("description").value;
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
-  const gender = document.querySelector('input[name="gender"]:checked').value;
-
-  members.push(new Member(name, description, email, password, gender));
-  displayMembers();
-  this.reset();
-  });
-
-    window.onload  = displayMembers;
-
+  
+    // Form submission (add member)
+    document.getElementById("memberForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+  
+      // Get form values
+      const name = document.getElementById("name");
+      const description = document.getElementById("description");
+      const email = document.getElementById("email");
+      const password = document.getElementById("password");
+      const gender = document.querySelector('input[name="gender"]:checked');
+  
+      let isValid = true;
+  
+      // Reset validation styles
+      [name, description, email, password].forEach(field => field.classList.remove("is-invalid"));
+  
+      // Email must include '@' and '.'
+      if (!email.value.includes("@") || !email.value.includes(".")) {
+        email.classList.add("is-invalid");
+        isValid = false;
+      }
+  
+      // Add member if valid
+      if (isValid) {
+        members.push(new Member(name.value, description.value, email.value, password.value, gender.value));
+        displayMembers();
+        this.reset();
+      }
+    });
+  
+    // Filter function on radio change
     function filterMembers() {
       displayMembers();
     }
+  
+    // On page load
+    window.onload = displayMembers;
   </script>
+  
+  
 
   
 </body>
@@ -216,3 +247,4 @@ const members = [
     Email: info@stars.com | Phone: +968 0099 5663
   </footer>
 </html>
+
